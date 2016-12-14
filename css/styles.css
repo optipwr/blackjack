@@ -1,7 +1,7 @@
 .the-table{
 	background-color: #277714;
 	border: 8px solid #663300;
-	border-radius: 10px;
+	/* border-radius: 10px; */
 	margin-top: 100px;
 	padding: 40px 0px 60px 0px;
 	border-radius: 10px 10px 50% 50%;
@@ -10,10 +10,13 @@
 
 .card{
 	height: 120px;
-	background-color: #fff;
+	/* background-image: url("https://s-media-cache-ak0.pinimg.com/originals/db/09/a0/db09a0052a7c021eef4f639ec68c069c.jpg"); */
 	color: black;
+	background-color: white;
 	margin: 5px;
 	padding: 0;
+	width: 10%;
+	float: left;
 
 }
 img {

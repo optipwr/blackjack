@@ -1,27 +1,26 @@
 .the-table{
-	background-color: #277714;
+	/* background-color: #277714; */
 	border: 8px solid #663300;
 	/* border-radius: 10px; */
-	margin-top: 100px;
+	margin-top: 20px;
 	padding: 40px 0px 60px 0px;
 	border-radius: 10px 10px 50% 50%;
-	background-image: url("https://s-media-cache-ak0.pinimg.com/originals/db/09/a0/db09a0052a7c021eef4f639ec68c069c.jpg");
+	background-image: url("../images/darktable.jpg");
 }
 
 .card{
-	height: 120px;
-	/* background-image: url("https://s-media-cache-ak0.pinimg.com/originals/db/09/a0/db09a0052a7c021eef4f639ec68c069c.jpg"); */
+	height: 140px;
 	color: black;
-	background-color: white;
 	margin: 5px;
 	padding: 0;
-	width: 10%;
+	width: 10.5%;
 	float: left;
 
 }
 img {
 	height: 100%;
 	width: 100%;
+	border-radius: 5px;
 }
 
 .dealer-total{
@@ -35,5 +34,13 @@ img {
 }
 
 body{
-	background-image: url("http://wallpapersonthe.net/wallpapers/b/1920x1080/1920x1080-simple_background-22345.jpg");
+	background-image: url("../images/background1.jpg");
 }
+
+/* .player-hand-wrapper{
+	height: 175px;
+}
+
+.dealer-hand-wrapper{
+	height: 175px;
+} */

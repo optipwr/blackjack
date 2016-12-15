@@ -3,7 +3,9 @@ var theDeck = createDeck();
 var playersHand = [];
 var dealersHand = [];
 var hitCounter = 0;
-var credit = 2000;
+var totalCredit = 2000;
+var betValue = 0;
+var playerWin = false;
 
 $(document).ready(function(){
 
@@ -50,6 +52,26 @@ $(document).ready(function(){
 		checkWin();
 	});
 
+	$('.btn-fifty').click(function(){
+		$('#credit').text(totalCredit -= 50);
+		$('#bet').text(betValue += 50);
+	});
+
+	$('.btn-hundred').click(function(){
+		$('#credit').text(totalCredit -= 100);
+		$('#bet').text(betValue += 100);
+	});
+
+	$('.btn-twoFifty').click(function(){
+		$('#credit').text(totalCredit -= 250);
+		$('#bet').text(betValue += 250);
+	});
+
+	$('.btn-fiveHundred').click(function(){
+		$('#credit').text(totalCredit -= 500);
+		$('#bet').text(betValue += 500);
+	});
+
 
 });
 
@@ -63,10 +85,12 @@ function checkWin(){
 	}
 	else if(dealerTotal > 21){
 		$('.player-win').text("Player wins with: ");
+		playerWin = true;
 	}
 	else{
 		if(playerTotal > dealerTotal){
 			$('.player-win').text("Player wins with: ");
+			playerWin = true;
 		}
 		else if(dealerTotal > playerTotal){
 			$('.dealer-win').text("Dealer wins with: ");
@@ -76,6 +100,7 @@ function checkWin(){
 			$('.dealer-win').text("It's a tie with: ");
 		}
 	}
+	returnCredit();
 }
 
 function reset(){
@@ -94,6 +119,10 @@ function reset(){
 	playerTotal = calculateTotal(playersHand, 'player');
 	dealerTotal = calculateTotal(dealersHand, 'dealer');
 	hitCounter = 0;
+	playerWin = false;
+	$('#bet').text(betValue = 0);
+	$('#credit').text(totalCredit);
+	// betValue = 0;
 }
 
 function createDeck(){
@@ -161,6 +190,12 @@ function calculateTotal(hand, who){
 	var classSelector = '.' + who + '-total-number';
 	$(classSelector).text(total);
 	return total;
+}
+
+function returnCredit(){
+	if(playerWin){
+		totalCredit += betValue * 2;
+	}
 }
 
 

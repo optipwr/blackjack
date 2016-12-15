@@ -1,11 +1,11 @@
 .the-table{
-	/* background-color: #277714; */
-	border: 8px solid #663300;
-	/* border-radius: 10px; */
-	margin-top: 20px;
+	border: 10px solid #663300;
+	margin-top: 10px;
 	padding: 40px 0px 60px 0px;
 	border-radius: 10px 10px 50% 50%;
-	background-image: url("../images/darktable.jpg");
+	background-image: url("../images/simplegreen2.jpg");
+	transform: perspective(1200px) rotateX(35deg);
+	box-shadow: 10px 15px 30px black;
 }
 
 .card{
@@ -15,8 +15,19 @@
 	padding: 0;
 	width: 10.5%;
 	float: left;
-
 }
+.card-move-2{
+	margin-left: -80px;
+}
+.card-move-3{
+	margin-left: -160px;
+}
+
+/* .deck:hover{
+	transform: rotate(180deg);
+	transition: all .5s;
+} */
+
 img {
 	height: 100%;
 	width: 100%;
@@ -35,6 +46,10 @@ img {
 
 body{
 	background-image: url("../images/background1.jpg");
+}
+
+.color-me{
+	color: white;
 }
 
 /* .player-hand-wrapper{

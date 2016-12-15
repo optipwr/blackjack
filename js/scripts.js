@@ -1,9 +1,9 @@
 // GLOBAL VARIABLES
-const freshDeck = createDeck();
-var theDeck = freshDeck;
+var theDeck = createDeck();
 var playersHand = [];
 var dealersHand = [];
 var hitCounter = 0;
+var credit = 2000;
 
 $(document).ready(function(){
 
@@ -80,7 +80,7 @@ function checkWin(){
 
 function reset(){
 	// the deck needs to be reset
-	theDeck = freshDeck; //Make a copy of our constnt freshDeck
+	theDeck = createDeck(); //creates new deck
 	// the player and dealer hands need to be reset
 	playersHand = [];
 	dealersHand = [];
@@ -88,11 +88,12 @@ function reset(){
 	// -cards
 	$('.card').html('');
 	$('.deck').html('<img src="images/cards/deck.png">');
-	$('.deal-button').attr('disabled', false); //Try and make card back remain after reset!!
+	$('.deal-button').attr('disabled', false);
 	$('.player-win').text('Player Total: ');
 	$('.dealer-win').text('Dealer Total: ');
 	playerTotal = calculateTotal(playersHand, 'player');
 	dealerTotal = calculateTotal(dealersHand, 'dealer');
+	hitCounter = 0;
 }
 
 function createDeck(){
@@ -122,12 +123,11 @@ function placeCard(who, where, whatCard){
 	$(classSelector).hide().fadeIn(1000);
 	// for (var i = 0; i < 5; i++){
 	// 	$('.card-move').animate({
-	// 		'margin-top': '+=10px'
+	// 		'margin': '+=20px 0px 0px -70px'
 
 	// 	})
 	// }
 	
-
 }
 
 function calculateTotal(hand, who){
@@ -135,18 +135,18 @@ function calculateTotal(hand, who){
 	var cardValue = 0;
 	var numberOfAces = 0;
 	for(let i = 0; i < hand.length; i++){
-		if((hitCounter == 0)&&(who === 'dealer')&&(i === 1)){ //Followed Paul's logic here. Don't fully understand.
+		if((hitCounter == 0)&&(who === 'dealer')&&(i === 1)){ //Followed Paul's logic here.
 		}
 		else{
 			cardValue = Number(hand[i].slice(0, -1));
-		if(cardValue > 10){
-			cardValue = 10;
-		}
-		if((cardValue === 1)&&(total < 11)){
-			cardValue = 11;
-			numberOfAces++;
-		}
-		total += cardValue;
+			if(cardValue > 10){
+				cardValue = 10;
+			}
+			if((cardValue === 1)&&(total < 11)){
+				cardValue = 11;
+				numberOfAces++;
+			}
+			total += cardValue;
 		}
 		// if((total > 21)&&(hasAce == true)){
 		// 	total -= 10;

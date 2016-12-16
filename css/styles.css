@@ -6,20 +6,92 @@
     	opacity: 0;
     }
     1% {
-    	opacity:  1;
+    	opacity: 1;
     }
     90% {
-    	top: 280px;
-    	left: -200px;
+    	top: 305px;
+    	left: -195px;
     	opacity: .8;
     }
     99%{
-    	top: 280px;
-    	left: -200px;
+    	top: 305px;
+    	left: -195px;
     }
     100% {
     	top:  0px;
-    	opacity:  0;
+    	opacity: 0;
+    }
+}
+
+@keyframes card-move-2 {
+    0%   {
+    	top: 0px;
+    	left: 0px;
+    	opacity: 0;
+    }
+    1% {
+    	opacity: 1;
+    }
+    90% {
+    	top: 305px;
+    	left: -85px;
+    	opacity: .8;
+    }
+    99%{
+    	top: 305px;
+    	left: -85px;
+    }
+    100% {
+    	top:  0px;
+    	opacity: 0;
+    }
+}
+
+@keyframes card-move-3 {
+    0%   {
+    	top: 0px;
+    	left: 0px;
+    	opacity: 0;
+    }
+    1% {
+    	opacity: 1;
+    }
+    90% {
+    	top: 305px;
+    	left: 20px;
+    	opacity: .8;
+    }
+    99%{
+    	top: 305px;
+    	left: 20px;
+    }
+    100% {
+    	top:  0px;
+    	opacity: 0;
+    }
+}
+
+@keyframes card-move-4 {
+    0%   {
+    	top: 0px;
+    	left: 0px;
+    	opacity: 0;
+    }
+    1% {
+    	opacity: 1;
+    }
+    90% {
+    	top: 305px;
+    	left: 130px;
+    	opacity: .8;
+    }
+    99%{
+    	top: 305px;
+    	left: 130px;
+    }
+    100% {
+    	top:  0px;
+    	opacity: 0;
     }
 }
 
@@ -45,28 +117,28 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	/* animation: card-move-1 2s 1; */
+	/* animation: card-move-1 1.8s 1; */
 }
 
 .card-move-2{
 	position: absolute;
 	top: 0;
 	left: 0;
-	/* animation: card-move-2 2s 1; */
+	/* animation: card-move-2 1.8s 1; */
 }
 
 .card-move-3{
 	position: absolute;
 	top: 0;
 	left: 0;
-	/* animation: card-move-3 2s 1; */
+	/* animation: card-move-3 1.8s 1; */
 }
 
 .card-move-4{
 	position: absolute;
 	top: 0;
 	left: 0;
-	/* animation: card-move-4 2s 1; */
+	/* animation: card-move-4 1.8s 1; */
 }
 
 

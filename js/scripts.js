@@ -7,15 +7,18 @@ var totalCredit = 2000;
 var betValue = 0;
 var playerWin = false;
 var hasDealt = false;
+var hasHit = 0;
 
 $(document).ready(function(){
 
 	$('.deal-button').click(function(){
 		if(betValue == 0){
-
+			// Do nothing!
 		}
 		else{
 			$('.deal-button').attr('disabled', true);
+			$('.card-move-1').css('animation', 'card-move-1 1s');
+			$('.card-move-2').css('animation', 'card-move-2 1s');
 			shuffleDeck();
 			// Use shift to remove the top card from the deck
 			playersHand.push(theDeck.shift());
@@ -41,7 +44,16 @@ $(document).ready(function(){
 
 	$('.hit-button').click(function(){
 		if(hasDealt){
-			if(calculateTotal(playersHand, 'player') < 21){
+			if((calculateTotal(playersHand, 'player') < 21)&&(hasHit == 0)){
+				$('.card-move-3').css('animation', 'card-move-3 1s 1');
+				playersHand.push(theDeck.shift());
+				var slotForNewCard = playersHand.length;
+				placeCard('player', slotForNewCard, playersHand[playersHand.length-1]);
+				calculateTotal(playersHand, 'player');
+				hasHit++;
+			}
+			else {
+				$('.card-move-4').css('animation', 'card-move-4 1s 1');
 				playersHand.push(theDeck.shift());
 				var slotForNewCard = playersHand.length;
 				placeCard('player', slotForNewCard, playersHand[playersHand.length-1]);
@@ -139,11 +151,16 @@ function reset(){
 	dealersHand = [];
 	// reset the DOM
 	// -cards
-	$('.card').html('');
-	$('.deck').html('<img src="images/cards/deck.png">');
+	$('.player-cards .card').html('');
+	$('.dealer-cards .card').html('');
+	// $('.deck').html('<img src="images/cards/deck.png">');
 	$('.deal-button').attr('disabled', false);
 	$('.player-win').text('Player Total: ');
 	$('.dealer-win').text('Dealer Total: ');
+	$('.card-move-1').css('animation', '');
+	$('.card-move-2').css('animation', '');
+	$('.card-move-3').css('animation', '');
+	$('.card-move-4').css('animation', '');
 	playerTotal = calculateTotal(playersHand, 'player');
 	dealerTotal = calculateTotal(dealersHand, 'dealer');
 	hitCounter = 0;

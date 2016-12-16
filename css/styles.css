@@ -1,3 +1,28 @@
+/* Keyframe 1 for first card. Need to make 3 more. */
+@keyframes card-move-1 {
+    0%   {
+    	top: 0px;
+    	left: 0px;
+    	opacity: 0;
+    }
+    1% {
+    	opacity:  1;
+    }
+    90% {
+    	top: 280px;
+    	left: -200px;
+    	opacity: .8;
+    }
+    99%{
+    	top: 280px;
+    	left: -200px;
+    }
+    100% {
+    	top:  0px;
+    	opacity:  0;
+    }
+}
+
 .the-table{
 	border: 10px solid #663300;
 	margin-top: 10px;
@@ -16,11 +41,37 @@
 	width: 10.5%;
 	float: left;
 }
-.card-move-2{
-	margin-left: -80px;
+.card-move-1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* animation: card-move-1 2s 1; */
 }
+
+.card-move-2{
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* animation: card-move-2 2s 1; */
+}
+
 .card-move-3{
-	margin-left: -160px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* animation: card-move-3 2s 1; */
+}
+
+.card-move-4{
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* animation: card-move-4 2s 1; */
+}
+
+
+.deck{
+	position: relative;
 }
 
 /* .deck:hover{

@@ -6,70 +6,98 @@ var hitCounter = 0;
 var totalCredit = 2000;
 var betValue = 0;
 var playerWin = false;
+var hasDealt = false;
 
 $(document).ready(function(){
 
 	$('.deal-button').click(function(){
-		$('.deal-button').attr('disabled', true);
-		shuffleDeck();
-		// Use shift to remove the top card from the deck
-		playersHand.push(theDeck.shift());
-		dealersHand.push(theDeck.shift());
-		playersHand.push(theDeck.shift());
-		dealersHand.push(theDeck.shift());
+		if(betValue == 0){
 
-		placeCard('player', 1, playersHand[0]);
-		placeCard('player', 2, playersHand[1]);
-		placeCard('dealer', 1, dealersHand[0]);
-		placeCard('dealer', 2, 'deck');
+		}
+		else{
+			$('.deal-button').attr('disabled', true);
+			shuffleDeck();
+			// Use shift to remove the top card from the deck
+			playersHand.push(theDeck.shift());
+			dealersHand.push(theDeck.shift());
+			playersHand.push(theDeck.shift());
+			dealersHand.push(theDeck.shift());
 
-		calculateTotal(playersHand, 'player');
-		calculateTotal(dealersHand, 'dealer');
-		hitCounter++;
+			placeCard('player', 1, playersHand[0]);
+			placeCard('player', 2, playersHand[1]);
+			placeCard('dealer', 1, dealersHand[0]);
+			placeCard('dealer', 2, 'deck');
+
+			calculateTotal(playersHand, 'player');
+			calculateTotal(dealersHand, 'dealer');
+			hitCounter++;
+			hasDealt = true;
+			if(calculateTotal(playersHand, 'player') === 21){
+				placeCard('dealer', 2, dealersHand[1]);
+				checkWin();
+			}
+		}
 	});
 
 	$('.hit-button').click(function(){
-		if(calculateTotal(playersHand, 'player') < 21){
-			playersHand.push(theDeck.shift());
-			var slotForNewCard = playersHand.length;
-			placeCard('player', slotForNewCard, playersHand[playersHand.length-1]);
-			calculateTotal(playersHand, 'player');
+		if(hasDealt){
+			if(calculateTotal(playersHand, 'player') < 21){
+				playersHand.push(theDeck.shift());
+				var slotForNewCard = playersHand.length;
+				placeCard('player', slotForNewCard, playersHand[playersHand.length-1]);
+				calculateTotal(playersHand, 'player');
+			}
 		}
 
 	});
+
 
 	$('.stand-button').click(function(){
-		placeCard('dealer', 2, dealersHand[dealersHand.length - 1]);  //Shows card that was hidden
-		var dealerTotal = calculateTotal(dealersHand, 'dealer');
-		while(dealerTotal < 17){
-			// Dealer will always hit while less than 17
-			dealersHand.push(theDeck.shift());
-			var slotForNewCard = dealersHand.length;
-			placeCard('dealer', slotForNewCard, dealersHand[dealersHand.length-1]);
-			dealerTotal = calculateTotal(dealersHand, 'dealer');
+		if(hasDealt){
+			placeCard('dealer', 2, dealersHand[dealersHand.length - 1]);  //Shows card that was hidden
+			var dealerTotal = calculateTotal(dealersHand, 'dealer');
+			while(dealerTotal < 17){
+				// Dealer will always hit while less than 17
+				dealersHand.push(theDeck.shift());
+				var slotForNewCard = dealersHand.length;
+				placeCard('dealer', slotForNewCard, dealersHand[dealersHand.length-1]);
+				dealerTotal = calculateTotal(dealersHand, 'dealer');
+			}
+			// The dealer has 17 or more Player hit stand. Check to see who won.
+			checkWin();
 		}
-		// The dealer has 17 or more Player hit stand. Check to see who won.
-		checkWin();
+		if(totalCredit == 0){
+			$('.intro').html("Game Over. You are out of credit.");
+		}
 	});
 
+
 	$('.btn-fifty').click(function(){
-		$('#credit').text(totalCredit -= 50);
-		$('#bet').text(betValue += 50);
+		if(totalCredit >= 50){
+			$('#credit').text(totalCredit -= 50);
+			$('#bet').text(betValue += 50);
+		}
 	});
 
 	$('.btn-hundred').click(function(){
-		$('#credit').text(totalCredit -= 100);
-		$('#bet').text(betValue += 100);
+		if(totalCredit >= 100){
+			$('#credit').text(totalCredit -= 100);
+			$('#bet').text(betValue += 100);
+		}
 	});
 
 	$('.btn-twoFifty').click(function(){
-		$('#credit').text(totalCredit -= 250);
-		$('#bet').text(betValue += 250);
+		if(totalCredit >= 250){
+			$('#credit').text(totalCredit -= 250);
+			$('#bet').text(betValue += 250);
+		}
 	});
 
 	$('.btn-fiveHundred').click(function(){
-		$('#credit').text(totalCredit -= 500);
-		$('#bet').text(betValue += 500);
+		if(totalCredit >= 500){
+			$('#credit').text(totalCredit -= 500);
+			$('#bet').text(betValue += 500);
+		}
 	});
 
 
@@ -122,6 +150,7 @@ function reset(){
 	playerWin = false;
 	$('#bet').text(betValue = 0);
 	$('#credit').text(totalCredit);
+	hasDealt = false;
 	// betValue = 0;
 }
 
@@ -150,12 +179,6 @@ function placeCard(who, where, whatCard){
 	var classSelector = '.' + who + '-cards .card-' + where;
 	$(classSelector).html('<img src="images/cards/' + whatCard + '.png">');
 	$(classSelector).hide().fadeIn(1000);
-	// for (var i = 0; i < 5; i++){
-	// 	$('.card-move').animate({
-	// 		'margin': '+=20px 0px 0px -70px'
-
-	// 	})
-	// }
 	
 }
 

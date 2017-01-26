@@ -16,27 +16,29 @@ $(document).ready(function(){
 			// Do nothing!
 		}
 		else{
+			// Disables Deal button after hand is dealt
 			$('.deal-button').attr('disabled', true);
+			// Animation for cards being dealt
 			$('.card-move-1').css('animation', 'card-move-1 1s');
 			$('.card-move-2').css('animation', 'card-move-2 1s');
 			shuffleDeck();
-			// Use shift to remove the top card from the deck
+			// Use shift to remove the top card from the deck as card goes to either player or dealer
 			playersHand.push(theDeck.shift());
 			dealersHand.push(theDeck.shift());
 			playersHand.push(theDeck.shift());
-			dealersHand.push(theDeck.shift());
+			dealersHand.push(theDeck.shift()); //Pushes the dealer's second card value
 
 			placeCard('player', 1, playersHand[0]);
 			placeCard('player', 2, playersHand[1]);
 			placeCard('dealer', 1, dealersHand[0]);
-			placeCard('dealer', 2, 'deck');
+			placeCard('dealer', 2, 'deck'); //Dealer's second card showing only the card back.
 
-			calculateTotal(playersHand, 'player');
+			calculateTotal(playersHand, 'player'); //Checking win condition on initial deal
 			calculateTotal(dealersHand, 'dealer');
 			hitCounter++;
 			hasDealt = true;
 			if(calculateTotal(playersHand, 'player') === 21){
-				placeCard('dealer', 2, dealersHand[1]);
+				placeCard('dealer', 2, dealersHand[1]); //Will reveal the second initial card the dealer got to show you how dealer won
 				checkWin();
 			}
 		}
@@ -181,7 +183,7 @@ function createDeck(){
 	}
 	return newDeck;
 }
-
+// Shuffle function that will switch the place of one random card with another 9001 times in order to randomize the deck
 function shuffleDeck(){
 	for(let i = 0; i < 9001; i++){
 		var card1ToSwitch = Math.floor(Math.random() * theDeck.length);
@@ -191,14 +193,14 @@ function shuffleDeck(){
 		theDeck[card2ToSwitch] = temp;
 	}
 }
-
+// Visuals to show the card image based on the card data
 function placeCard(who, where, whatCard){
 	var classSelector = '.' + who + '-cards .card-' + where;
 	$(classSelector).html('<img src="images/cards/' + whatCard + '.png">');
 	$(classSelector).hide().fadeIn(1000);
 	
 }
-
+// This is the win condition checker
 function calculateTotal(hand, who){
 	var total = 0;
 	var cardValue = 0;

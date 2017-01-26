@@ -78,3 +78,8 @@ function createDeck(){
 	return newDeck;
 }
 ```
+
+##Screenshots
+---
+Shot of game being played
+![alt text](https://github.com/optipwr/blackjack/blob/master/images/blackjack.png 'blackjack.png')

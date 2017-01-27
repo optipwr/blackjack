@@ -25,7 +25,7 @@ Stanard BlackJack rules apply:
 2. Checking win conditions.
 3. Setting logic for the dealer to either hit or stand.
 
-##Code Snippets
+##Code Snippets:
 ---
 Example of the Deal button
 
@@ -79,7 +79,7 @@ function createDeck(){
 }
 ```
 
-##Screenshots
+##Screenshots:
 ---
 Shot of game being played
 ![alt text](https://github.com/optipwr/blackjack/blob/master/images/blackjack.png 'blackjack.png')
